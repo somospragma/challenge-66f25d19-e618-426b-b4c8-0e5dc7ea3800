@@ -1,15 +1,15 @@
-# Implementación avanzada de POO en un sistema de gestión de pedidos
+# Implementación de POO en un sistema de gestión de calidad
 
-Necesitamos desarrollar un sistema de gestión de pedidos para una tienda en línea que opere en un dominio de comercio electrónico. El sistema debe manejar la creación, modificación y cancelación de pedidos, así como la gestión de productos y usuarios. El objetivo es demostrar un dominio avanzado de la programación orientada a objetos, incluyendo la implementación de clases, interfaces, manejo de excepciones, y patrones de diseño.
+La empresa necesita un sistema robusto y escalable para gestionar la calidad del software. El sistema debe manejar conexiones a bases de datos, gestionar excepciones, implementar interfaces y clases abstractas, utilizar colecciones, integrar bibliotecas y frameworks, y aplicar patrones de diseño orientados a objetos. Además, debe ser compatible con herramientas de pruebas unitarias para asegurar la calidad del código.
 
 ## Informacion General
 
 | Campo | Valor |
 |-------|-------|
 | **Tema** | Implementación de programación orientada a objetos (POO) - avanzado |
-| **Nivel** | senior-l2 |
+| **Nivel** | senior-l3 |
 | **Tipo** | practical |
-| **Tiempo estimado** | 8-10 horas |
+| **Tiempo estimado** | 10-12 horas |
 
 ## Fases del Reto
 
@@ -21,11 +21,11 @@ Necesitamos desarrollar un sistema de gestión de pedidos para una tienda en lí
 
 **Instrucciones:**
 
-- Asegúrate de tener instalado para ejecutar el proyecto: JDK 17+, Maven 3.9+, IDE con soporte Java.
+- Asegúrate de tener instalado para ejecutar el proyecto: Un IDE o editor de código.
 - Copia todo el contenido del campo **Código Base** de este reto — incluyendo el texto de instrucciones que aparece al inicio.
 - Abre un asistente de IA (Claude en claude.ai, ChatGPT o Gemini — se recomienda Claude), pega el contenido copiado en el chat y envíalo.
 - El asistente analizará los archivos, corregirá errores y generará un archivo ZIP descargable. Descárgalo y extráelo en la carpeta donde quieras trabajar.
-- Ejecuta `mvn compile` en la raíz. Si no hay errores, estás listo.
+- Verifica que el proyecto arranca sin errores.
 
 **Entregable:** El proyecto compila/arranca sin errores.
 
@@ -38,84 +38,108 @@ Necesitamos desarrollar un sistema de gestión de pedidos para una tienda en lí
 
 </details>
 
-### Fase 1: Modelado del dominio
+### Fase 1: Diseño del sistema
 
-**Objetivo:** Definir las clases y relaciones necesarias para representar el dominio del sistema de gestión de pedidos.
+**Objetivo:** Definir la arquitectura del sistema y sus componentes principales.
 
 **Tiempo estimado:** 2 horas
 
 **Instrucciones:**
 
-- Identifica los principales elementos del dominio (pedidos, productos, usuarios) y sus relaciones.
-- Diseña las clases y sus atributos para representar estos elementos.
+- Identifica los componentes clave del sistema (base de datos, interfaz de usuario, lógica de negocio).
+- Define las interfaces y clases abstractas que serán utilizadas.
+- Establece las conexiones necesarias con la base de datos.
 
-**Entregable:** Diagrama de clases y descripción de las relaciones entre ellas.
+**Entregable:** Diagrama de componentes y descripción de interfaces y clases abstractas.
 
 <details>
 <summary>Pistas de conocimiento</summary>
 
-- Considera la herencia y la composición para modelar las relaciones entre clases.
-- Piensa en cómo representar las restricciones de negocio (por ejemplo, un producto no puede tener un precio negativo).
+- Piensa en cómo separar las preocupaciones en diferentes componentes.
+- Considera cómo las interfaces pueden facilitar la extensión y mantenimiento del sistema.
 
 </details>
 
-### Fase 2: Implementación de clases y métodos
+### Fase 2: Implementación de la lógica de negocio
 
-**Objetivo:** Implementar las clases y métodos necesarios para manejar la lógica del dominio.
+**Objetivo:** Implementar la lógica de negocio utilizando patrones de diseño orientados a objetos.
+
+**Tiempo estimado:** 4 horas
+
+**Instrucciones:**
+
+- Implementa las clases concretas que heredan de las clases abstractas definidas en la fase anterior.
+- Aplica patrones de diseño como el patrón de fábrica, el patrón de estrategia, etc.
+- Maneja excepciones y asegura que el sistema sea robusto frente a errores.
+
+**Entregable:** Código implementado de la lógica de negocio con patrones de diseño aplicados.
+
+<details>
+<summary>Pistas de conocimiento</summary>
+
+- Recuerda que los patrones de diseño pueden simplificar y mejorar la mantenibilidad del código.
+- Considera cómo manejarías diferentes tipos de excepciones en tu sistema.
+
+</details>
+
+### Fase 3: Integración de bibliotecas y frameworks
+
+**Objetivo:** Integrar bibliotecas y frameworks para mejorar la funcionalidad del sistema.
 
 **Tiempo estimado:** 3 horas
 
 **Instrucciones:**
 
-- Implementa las clases y métodos para crear, modificar y cancelar pedidos.
-- Asegúrate de manejar adecuadamente las excepciones y validaciones.
+- Identifica las bibliotecas y frameworks que pueden ser útiles para tu sistema.
+- Integra estas bibliotecas y frameworks en tu código.
+- Asegura que la integración no afecte negativamente la performance del sistema.
 
-**Entregable:** Código fuente de las clases y métodos implementados.
+**Entregable:** Código integrado con bibliotecas y frameworks.
 
 <details>
 <summary>Pistas de conocimiento</summary>
 
-- Usa excepciones personalizadas para manejar errores específicos del dominio.
-- Considera el uso de patrones de diseño para mejorar la estructura y reutilización del código.
+- Investiga las mejores prácticas para integrar bibliotecas y frameworks en tu sistema.
+- Considera el impacto en la performance al integrar nuevas dependencias.
 
 </details>
 
-### Fase 3: Integración y pruebas
+### Fase 4: Pruebas unitarias y aseguramiento de la calidad
 
-**Objetivo:** Integrar las clases implementadas y realizar pruebas unitarias para verificar su correcto funcionamiento.
+**Objetivo:** Implementar pruebas unitarias para asegurar la calidad del código.
 
 **Tiempo estimado:** 3 horas
 
 **Instrucciones:**
 
-- Integra las clases y métodos en un sistema funcional.
-- Escribe pruebas unitarias para verificar el correcto funcionamiento de las clases y métodos.
+- Diseña y escribe pruebas unitarias para los componentes clave del sistema.
+- Utiliza herramientas de pruebas unitarias para ejecutar y validar las pruebas.
+- Asegura que el código cumpla con los estándares de calidad establecidos.
 
-**Entregable:** Código fuente integrado y pruebas unitarias.
+**Entregable:** Conjunto de pruebas unitarias y reporte de cobertura de código.
 
 <details>
 <summary>Pistas de conocimiento</summary>
 
-- Usa herramientas de pruebas unitarias para verificar el comportamiento de las clases y métodos.
-- Considera escenarios de prueba que cubran tanto los casos felices como los edge cases.
+- Recuerda que las pruebas unitarias son esenciales para asegurar la calidad del código.
+- Considera cómo podrías mejorar la cobertura de pruebas en tu sistema.
 
 </details>
 
 ## Dimensiones Evaluadas
 
-- **queEs**: ¿Qué representa cada clase en el dominio del sistema de gestión de pedidos?
-- **paraQueSirve**: ¿Para qué sirve cada método implementado en las clases?
-- **comoSeUsa**: ¿Cómo se usan las excepciones personalizadas en el manejo de errores del sistema?
-- **erroresComunes**: ¿Qué errores comunes pueden ocurrir al crear un pedido y cómo se manejan?
-- **queDecisionesImplica**: ¿Qué decisiones de diseño tomaste al implementar las clases y métodos?
+- **queEs**: ¿Qué es la programación orientada a objetos y por qué es importante en este sistema?
+- **paraQueSirve**: ¿Para qué sirven las interfaces y clases abstractas en tu diseño?
+- **comoSeUsa**: ¿Cómo aplicaste un patrón de diseño en tu lógica de negocio?
+- **erroresComunes**: ¿Qué errores comunes encontraste al manejar excepciones y cómo los solucionaste?
+- **queDecisionesImplica**: ¿Qué decisiones tomaste al integrar bibliotecas y frameworks y por qué?
 
 ## Criterios de Evaluacion
 
-- Modelo de dominio completo y coherente.
-- Clases y métodos implementados correctamente.
-- Manejo adecuado de excepciones y validaciones.
-- Pruebas unitarias que cubren casos felices y edge cases.
-- Decisiones de diseño justificadas y documentadas.
+- Diseño del sistema con componentes bien definidos.
+- Implementación de la lógica de negocio con patrones de diseño aplicados.
+- Integración efectiva de bibliotecas y frameworks.
+- Pruebas unitarias que aseguran la calidad del código.
 
 ## Como trabajar con un asistente de IA
 

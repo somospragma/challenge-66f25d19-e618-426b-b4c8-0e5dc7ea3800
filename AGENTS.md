@@ -21,16 +21,17 @@ Candidata Senior en el área de Calidad de Software especializada en automatizac
 
 ### Reto
 - Tema: Implementación de programación orientada a objetos (POO) - avanzado
-- Seniority: senior-l2
+- Seniority: senior-l3
 - Tipo: practical
-- Título: Implementación avanzada de POO en un sistema de gestión de pedidos
-- Tiempo estimado: 8-10 horas
+- Título: Implementación de POO en un sistema de gestión de calidad
+- Tiempo estimado: 10-12 horas
 
 ### Fases (trabajo del HUMANO — PROHIBIDO completarlas)
 No implementes estos entregables. Dejalos como hueco pedagógico. El asistente solo materializa el proyecto arrancable para que el participante pueda trabajar.
-- Fase 1: Modelado del dominio — objetivo: Definir las clases y relaciones necesarias para representar el dominio del sistema de gestión de pedidos. — entregable (NO resolver): Diagrama de clases y descripción de las relaciones entre ellas.
-- Fase 2: Implementación de clases y métodos — objetivo: Implementar las clases y métodos necesarios para manejar la lógica del dominio. — entregable (NO resolver): Código fuente de las clases y métodos implementados.
-- Fase 3: Integración y pruebas — objetivo: Integrar las clases implementadas y realizar pruebas unitarias para verificar su correcto funcionamiento. — entregable (NO resolver): Código fuente integrado y pruebas unitarias.
+- Fase 1: Diseño del sistema — objetivo: Definir la arquitectura del sistema y sus componentes principales. — entregable (NO resolver): Diagrama de componentes y descripción de interfaces y clases abstractas.
+- Fase 2: Implementación de la lógica de negocio — objetivo: Implementar la lógica de negocio utilizando patrones de diseño orientados a objetos. — entregable (NO resolver): Código implementado de la lógica de negocio con patrones de diseño aplicados.
+- Fase 3: Integración de bibliotecas y frameworks — objetivo: Integrar bibliotecas y frameworks para mejorar la funcionalidad del sistema. — entregable (NO resolver): Código integrado con bibliotecas y frameworks.
+- Fase 4: Pruebas unitarias y aseguramiento de la calidad — objetivo: Implementar pruebas unitarias para asegurar la calidad del código. — entregable (NO resolver): Conjunto de pruebas unitarias y reporte de cobertura de código.
 
 Eres un asistente experto en análisis, corrección y generación de archivos de cualquier tipo:
 código fuente, documentación, hojas de cálculo, documentos Word, configuraciones, entre otros.
@@ -150,188 +151,121 @@ El participante que recibirá este proyecto los debe encontrar y resolver él mi
 INPUT
 Aquí está la cadena con los archivos:
 
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/domain/model/Order.java ===
-package com.pragma.ecommerce.domain.model;
+src/main/java/com/pragma/quality/QualityManagementApplication.java
+package com.pragma.quality;
 
-import java.util.List;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class Order {
-    private Long id;
-    private User user;
-    private List<Product> products;
-    private OrderStatus status;
-
-    public Order(Long id, User user, List<Product> products, OrderStatus status) {
-        this.id = id;
-        this.user = user;
-        this.products = products;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+@SpringBootApplication
+public class QualityManagementApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(QualityManagementApplication.class, args);
     }
 }
 
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/domain/model/Product.java ===
-package com.pragma.ecommerce.domain.model;
+// === ARCHIVO: src/main/java/com/pragma/quality/domain/QualityDomain.java ===
+package com.pragma.quality.domain;
 
-public class Product {
-    private Long id;
-    private String name;
-    private double price;
-
-    public Product(Long id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+public interface QualityDomain {
+    // Definiciones de interfaces y clases abstractas
 }
 
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/domain/model/User.java ===
-package com.pragma.ecommerce.domain.model;
+// === ARCHIVO: src/main/java/com/pragma/quality/application/QualityService.java ===
+package com.pragma.quality.application;
 
-public class User {
-    private Long id;
-    private String name;
-    private String email;
-
-    public User(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-}
-
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/application/service/OrderService.java ===
-package com.pragma.ecommerce.application.service;
-
-import com.pragma.ecommerce.domain.model.Order;
-import com.pragma.ecommerce.domain.model.Product;
-import com.pragma.ecommerce.domain.model.User;
-import com.pragma.ecommerce.infrastructure.exception.OrderNotFoundException;
-import com.pragma.ecommerce.infrastructure.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pragma.quality.domain.QualityDomain;
+import com.pragma.quality.infrastructure.QualityRepository;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
-public class OrderService {
-    @Autowired
-    private OrderRepository orderRepository;
+public class QualityService implements QualityDomain {
+    private final QualityRepository repository;
 
-    public Order createOrder(User user, List<Product> products) {
-        Order order = new Order(null, user, products, OrderStatus.CREATED);
-        return orderRepository.save(order);
+    public QualityService(QualityRepository repository) {
+        this.repository = repository;
     }
 
-    public Order getOrder(Long id) {
-        return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order not found"));
+    // Implementación de la lógica de negocio
+}
+
+// === ARCHIVO: src/main/java/com/pragma/quality/infrastructure/QualityRepository.java ===
+package com.pragma.quality.infrastructure;
+
+import com.pragma.quality.domain.QualityDomain;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class QualityRepository implements QualityDomain {
+    // Implementación de la capa de infraestructura para la gestión de datos
+}
+
+// === ARCHIVO: src/main/resources/application.properties ===
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+// === ARCHIVO: src/test/java/com/pragma/quality/QualityServiceTest.java ===
+package com.pragma.quality.application;
+
+import com.pragma.quality.infrastructure.QualityRepository;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
+
+class QualityServiceTest {
+
+    @Mock
+    private QualityRepository repository;
+
+    @InjectMocks
+    private QualityService service;
+
+    public QualityServiceTest() {
+        MockitoAnnotations.initMocks(this);
     }
 
-    public void cancelOrder(Long id) {
-        Order order = getOrder(id);
-        order.setStatus(OrderStatus.CANCELLED);
-        orderRepository.save(order);
+    @Test
+    void testServiceMethod() {
+        // Arrange
+        // Act
+        // Assert
     }
 }
 
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/infrastructure/repository/OrderRepository.java ===
-package com.pragma.ecommerce.infrastructure.repository;
+// === ARCHIVO: src/main/java/com/pragma/quality/exception/NotFoundException.java ===
+package com.pragma.quality.exception;
 
-import com.pragma.ecommerce.domain.model.Order;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface OrderRepository extends JpaRepository<Order, Long> {
-}
-
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/infrastructure/exception/OrderNotFoundException.java ===
-package com.pragma.ecommerce.infrastructure.exception;
-
-public class OrderNotFoundException extends RuntimeException {
-    public OrderNotFoundException(String message) {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
         super(message);
     }
 }
 
-// === ARCHIVO: src/main/java/com/pragma/ecommerce/infrastructure/exception/GlobalExceptionHandler.java ===
-package com.pragma.ecommerce.infrastructure.exception;
+// === ARCHIVO: src/main/java/com/pragma/quality/exception/BadRequestException.java ===
+package com.pragma.quality.exception;
+
+public class BadRequestException extends RuntimeException {
+    public BadRequestException(String message) {
+        super(message);
+    }
+}
+
+// === ARCHIVO: src/main/java/com/pragma/quality/exception/InternalServerErrorException.java ===
+package com.pragma.quality.exception;
+
+public class InternalServerErrorException extends RuntimeException {
+    public InternalServerErrorException(String message) {
+        super(message);
+    }
+}
+
+// === ARCHIVO: src/main/java/com/pragma/quality/exception/GlobalExceptionHandler.java ===
+package com.pragma.quality.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -340,184 +274,69 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException ex) {
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
-}
 
-// === ARCHIVO: src/test/java/com/pragma/ecommerce/domain/model/OrderTest.java ===
-package com.pragma.ecommerce.domain.model;
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<String> handleBadRequestException(BadRequestException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class OrderTest {
-    @Test
-    public void testOrderCreation() {
-        User user = new User(1L, "John Doe", "john.doe@example.com");
-        Product product = new Product(1L, "Product 1", 10.0);
-        Order order = new Order(1L, user, List.of(product), OrderStatus.CREATED);
-        assertEquals(1L, order.getId());
-        assertEquals(user, order.getUser());
-        assertEquals(List.of(product), order.getProducts());
-        assertEquals(OrderStatus.CREATED, order.getStatus());
+    @ExceptionHandler(InternalServerErrorException.class)
+    public ResponseEntity<String> handleInternalServerErrorException(InternalServerErrorException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
-// === ARCHIVO: src/test/java/com/pragma/ecommerce/application/service/OrderServiceTest.java ===
-package com.pragma.ecommerce.application.service;
+// === ARCHIVO: src/test/java/com/pragma/quality/application/QualityServiceTest.java ===
+package com.pragma.quality.application;
 
-import com.pragma.ecommerce.domain.model.Order;
-import com.pragma.ecommerce.domain.model.Product;
-import com.pragma.ecommerce.domain.model.User;
-import com.pragma.ecommerce.infrastructure.exception.OrderNotFoundException;
-import com.pragma.ecommerce.infrastructure.repository.OrderRepository;
-import org.junit.jupiter.api.BeforeEach;
+import com.pragma.quality.infrastructure.QualityRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-public class OrderServiceTest {
+class QualityServiceTest {
+
     @Mock
-    private OrderRepository orderRepository;
+    private QualityRepository repository;
 
     @InjectMocks
-    private OrderService orderService;
+    private QualityService service;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public QualityServiceTest() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void testCreateOrder() {
-        User user = new User(1L, "John Doe", "john.doe@example.com");
-        Product product = new Product(1L, "Product 1", 10.0);
-        Order order = new Order(null, user, List.of(product), OrderStatus.CREATED);
-        when(orderRepository.save(order)).thenReturn(order);
-        Order createdOrder = orderService.createOrder(user, List.of(product));
-        assertEquals(order, createdOrder);
+    void testServiceMethod1() {
+        // Arrange
+        // Act
+        // Assert
+        assertNotNull(service);
     }
 
     @Test
-    public void testGetOrder() {
-        User user = new User(1L, "John Doe", "john.doe@example.com");
-        Product product = new Product(1L, "Product 1", 10.0);
-        Order order = new Order(1L, user, List.of(product), OrderStatus.CREATED);
-        when(orderRepository.findById(1L)).thenReturn(java.util.Optional.of(order));
-        Order retrievedOrder = orderService.getOrder(1L);
-        assertEquals(order, retrievedOrder);
+    void testServiceMethod2() {
+        // Arrange
+        // Act
+        // Assert
+        assertNotNull(service);
     }
 
     @Test
-    public void testGetOrderNotFound() {
-        when(orderRepository.findById(1L)).thenReturn(java.util.Optional.empty());
-        assertThrows(OrderNotFoundException.class, () -> orderService.getOrder(1L));
+    void testServiceMethod3() {
+        // Arrange
+        // Act
+        // Assert
+        assertNotNull(service);
     }
 }
 
-// === ARCHIVO: src/test/java/com/pragma/ecommerce/infrastructure/repository/OrderRepositoryTest.java ===
-package com.pragma.ecommerce.infrastructure.repository;
-
-import com.pragma.ecommerce.domain.model.Order;
-import com.pragma.ecommerce.domain.model.Product;
-import com.pragma.ecommerce.domain.model.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import java.util.List;
-import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-@SpringBootTest
-public class OrderRepositoryTest {
-    @Mock
-    private OrderRepository orderRepository;
-
-    @InjectMocks
-    private OrderService orderService;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
-
-    @Test
-    public void testSaveOrder() {
-        User user = new User(1L, "John Doe", "john.doe@example.com");
-        Product product = new Product(1L, "Product 1", 10.0);
-        Order order = new Order(null, user, List.of(product), OrderStatus.CREATED);
-        when(orderRepository.save(order)).thenReturn(order);
-        Order savedOrder = orderRepository.save(order);
-        assertEquals(order, savedOrder);
-    }
-
-    @Test
-    public void testFindOrderById() {
-        User user = new User(1L, "John Doe", "john.doe@example.com");
-        Product product = new Product(1L, "Product 1", 10.0);
-        Order order = new Order(1L, user, List.of(product), OrderStatus.CREATED);
-        when(orderRepository.findById(1L)).thenReturn(Optional.of(order));
-        Order retrievedOrder = orderRepository.findById(1L).orElse(null);
-        assertEquals(order, retrievedOrder);
-    }
-}
-
-// === ARCHIVO: pom.xml ===
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.pragma</groupId>
-    <artifactId>ecommerce</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <properties>
-        <java.version>21</java.version>
-        <spring-boot.version>3.4.0</spring-boot.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.1.214</version>
-            <scope>runtime</scope>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-        </plugins>
-    </build>
-</project>
 ```
